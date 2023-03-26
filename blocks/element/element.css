@@ -1,0 +1,9 @@
+.element {
+    display: block;
+    list-style: none;
+    padding: 0;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+    position: relative;
+  }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место Россия</title>
+  </head>
+
+  <body class="body">
+    <header class="header">
+      <img class="header__logo" src="./images/logo.svg" alt="Место Россия"/>
+    </header>
+    <main class="content">
+      <section class="profile">
+        <div class="profile__image-container">
+          <img class="profile__image" src="./images/kusto.jpg" alt="Изображение профиля"/>
+          <div class="profile__image-ellipse"></div>
+        </div>
+        <div class="profile__info">
+          <div class="profile__name-wrapper">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__name-edit" type="button"></button>
+          </div>
+          <p class="profile__description">Исследователь океана</p>
+        </div>
+        <button class="profile__button" type="button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__grid">
+            <li class="element">
+                <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                <div class="element__info">
+                    <h2 class="element__name">Карачаевск</h2>
+                    <div class="element__like_container">
+                        <button class="element__like" type="button"></button>
+                    </div>
+                </div>
+            </li>
+            <li class="element">
+                <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+                <div class="element__info">
+                    <h2 class="element__name">Гора Эльбрус</h2>
+                    <div class="element__like_container">
+                        <button class="element__like" type="button"></button>
+                    </div>
+                </div>
+            </li>
+            <li class="element">
+                <img class="element__image" src="./images/donbay.png" alt="Домбай">
+                <div class="element__info">
+                    <h2 class="element__name">Домбай</h2>
+                    <div class="element__like_container">
+                        <button class="element__like" type="button"></button>
+                    </div>
+                </div>
+            </li>
+            <li class="element">
+                <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+                <div class="element__info">
+                    <h2 class="element__name">Гора Эльбрус</h2>
+                    <div class="element__like_container">
+                        <button class="element__like" type="button"></button>
+                    </div>
+                </div>
+            </li>
+            <li class="element">
+                <img class="element__image" src="./images/donbay.png" alt="Домбай">
+                <div class="element__info">
+                    <h2 class="element__name">Домбай</h2>
+                    <div class="element__like_container">
+                        <button class="element__like" type="button"></button>
+                    </div>
+                </div>
+            </li>
+            <li class="element">
+                <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                <div class="element__info">
+                    <h2 class="element__name">Карачаевск</h2>
+                    <div class="element__like_container">
+                        <button class="element__like" type="button"></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2023. Huriky</p>
+    </footer>
+
+    <div class="popup popup__form" id="edit_profile">
+        <div class="popup__container">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <form id="profile_form" class="popup_form" novalidate>
+            <div class="popup__field-wrapper">
+              <input
+                type="text"
+                class="popup__input"
+                id="input-name"
+                name="newName"
+                placeholder="Имя"
+                required
+                minlength="2"
+                maxlength="40"
+              />
+            </div>
+            <div class="popup__field-wrapper">
+              <input
+                type="text"
+                class="popup__input"
+                id="input-about"
+                name="newAbout"
+                placeholder="Профессия"
+                required
+                minlength="2"
+                maxlength="200"
+              />
+            </div>
+            <button class="popup__submit-button" type="submit">Сохранить</button>
+          </form>
+          <button class="popup__close-button" type="button" id="submit-profile"></button>
+        </div>
+      </div>
+
+      <script src="./pages/index.js" type="module"></script>
+  </body>
+</html>
