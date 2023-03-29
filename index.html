@@ -14,10 +14,10 @@
     </header>
     <main class="content">
       <section class="profile">
-        <div class="profile__image-container">
+        <article class="profile__image-container">
           <img class="profile__image" src="./images/kusto.jpg" alt="Изображение профиля"/>
-          <div class="profile__image-ellipse"></div>
-        </div>
+          <figure class="profile__image-ellipse"></figure>
+        </article>
         <div class="profile__info">
           <div class="profile__name-wrapper">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -81,8 +81,8 @@
     <div class="popup" id="edit_profile">
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
-          <form id="profile_form" class="popup__form" novalidate>
-            <div class="popup__field-wrapper">
+          <form name="popup-profile" id="profile_form" class="popup__form" novalidate>
+            <article class="popup__field-wrapper">
               <input
                 type="text"
                 class="popup__input"
@@ -91,10 +91,7 @@
                 placeholder="Имя"
                 required
                 minlength="2"
-                maxlength="40"
               />
-            </div>
-            <div class="popup__field-wrapper">
               <input
                 type="text"
                 class="popup__input"
@@ -103,15 +100,13 @@
                 placeholder="Профессия"
                 required
                 minlength="2"
-                maxlength="200"
               />
             </article>
             <button class="popup__submit-button" type="submit">Сохранить</button>
           </form>
           <button class="popup__close-button" type="button" id="submit-profile"></button>
         </div>
-      </div>
-
-      <script src="./pages/index.js" type="module"></script>
+    </div>
+      <script src="./scripts/index.js"></script>
   </body>
 </html>
