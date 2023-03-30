@@ -5,13 +5,13 @@ const formElement = document.querySelector("#profile_form");
 
 let titleElement = document.querySelector(".profile__name");
 let descriptionElement = document.querySelector(".profile__description");
-let titleInput = document.querySelector("#input-name").value;
-let descriptionInput = document.querySelector("#input-about").value;
+let titleInput = document.querySelector("#input-name");
+let descriptionInput = document.querySelector("#input-about");
 
 const openPopup = () => {
     popupElement.classList.add("popup_opened");
-    titleInput = titleElement.textContent;
-    descriptionInput = descriptionElement.textContent;
+    titleInput.value = titleElement.textContent;
+    descriptionInput.value = descriptionElement.textContent;
 };
 
 const closePopup = () => {
@@ -20,10 +20,8 @@ const closePopup = () => {
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
-    titleInput = document.querySelector("#input-name").value;
-    descriptionInput = document.querySelector("#input-about").value;
-    titleElement.textContent = titleInput;
-    descriptionElement.textContent = descriptionInput;
+    titleElement.textContent = titleInput.value;
+    descriptionElement.textContent = descriptionInput.value;
     closePopup(); 
 }
 
