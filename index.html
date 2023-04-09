@@ -132,17 +132,28 @@
             />
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
-        <button class="popup__close-button" type="button"></button>
+        <button class="popup__close-button" id="submit-close-popup-element" type="button"></button>
       </div>
     </div>
 
     <div class="popup popup_image" id="image_popup">
       <figure class="popup__image-container">
-        <img class="popup__image" src="#" />
+        <img class="popup__image" id="popup-image-view" src="#" />
         <figcaption class="popup__image-caption"></figcaption>
         <button class="popup__close-button" type="button"></button>
       </figure>
     </div>
+
+    <template id="card-template">
+      <li class="element" id="">
+        <img class="element__image"/>
+        <button class="element__basket" type="button"></button>
+        <div class="element__info">
+          <h2 class="element__name"></h2>
+          <button class="element__like" type="button"></button>
+        </div>
+      </li>
+    </template>
 
       <script src="./scripts/index.js"></script>
   </body>
