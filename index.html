@@ -28,7 +28,7 @@
         <ul class="elements__grid">
             <li class="element">
                 <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                <button> class="element__basket" type="button"</button>
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name">Карачаевск</h2>
                     <button class="element__like" type="button"></button>
@@ -36,6 +36,7 @@
             </li>
             <li class="element">
                 <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name">Гора Эльбрус</h2>
                     <button class="element__like" type="button"></button>
@@ -43,6 +44,7 @@
             </li>
             <li class="element">
                 <img class="element__image" src="./images/donbay.png" alt="Домбай">
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name">Домбай</h2>
                     <button class="element__like" type="button"></button>
@@ -50,6 +52,7 @@
             </li>
             <li class="element">
                 <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name">Гора Эльбрус</h2>
                     <button class="element__like" type="button"></button>
@@ -57,6 +60,7 @@
             </li>
             <li class="element">
                 <img class="element__image" src="./images/donbay.png" alt="Домбай">
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name">Домбай</h2>
                     <button class="element__like" type="button"></button>
@@ -64,6 +68,7 @@
             </li>
             <li class="element">
                 <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                <button class="element__basket" type="button"></button>
                 <div class="element__info">
                     <h2 class="element__name">Карачаевск</h2>
                     <button class="element__like" type="button"></button>
@@ -103,6 +108,42 @@
           <button class="popup__close-button" type="button" id="submit-profile"></button>
         </div>
     </div>
+
+    <div class="popup" id="add_element">
+      <div class="popup__container">
+        <h2 class="popup__title">Добавить место</h2>
+        <form name="popup-add-element" id="add_element_form" class="popup__form" novalidate>
+            <input
+              type="text"
+              class="popup__input"
+              id="element-name"
+              name="elementName"
+              placeholder="Название"
+              required
+              minlength="2"
+            />
+            <input
+              class="popup__input"
+              id="element-link"
+              name="elementLink"
+              placeholder="Ссылка на картинку"
+              type="url"
+              required
+            />
+          <button class="popup__submit-button" type="submit">Сохранить</button>
+        </form>
+        <button class="popup__close-button" type="button"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_image" id="image_popup">
+      <figure class="popup__image-container">
+        <img class="popup__image" src="#" />
+        <figcaption class="popup__image-caption"></figcaption>
+        <button class="popup__close-button" type="button"></button>
+      </figure>
+    </div>
+
       <script src="./scripts/index.js"></script>
   </body>
 </html>

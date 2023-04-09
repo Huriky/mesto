@@ -1,0 +1,18 @@
+.element__basket {
+    background: url(../../../images/basket.svg);
+    background-size: 100%;
+    width: 18px;
+    height: 19px;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    align-self: flex-start;
+    justify-self: end;
+    margin: 20px 20px 0 0;
+    border: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.element__basket:hover {
+    opacity: 0.6;
+}

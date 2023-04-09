@@ -1,9 +1,8 @@
 .element {
-    display: block;
+    display: grid;
     list-style: none;
     padding: 0;
     border-radius: 10px;
     background-color: white;
     overflow: hidden;
-    position: relative;
-  }
+}
