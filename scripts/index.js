@@ -41,39 +41,36 @@ const imagePopupCloseButton = imagePopup.querySelector(".popup__close-button");
 const elementImages = document.querySelectorAll(".element__image");
 const elementLikes = document.querySelectorAll(".element__like");
 
-let titleElement = document.querySelector(".profile__name");
-let descriptionElement = document.querySelector(".profile__description");
-let titleInput = document.querySelector("#input-name");
-let descriptionInput = document.querySelector("#input-about");
+const titleElement = document.querySelector(".profile__name");
+const descriptionElement = document.querySelector(".profile__description");
+const titleInput = document.querySelector("#input-name");
+const descriptionInput = document.querySelector("#input-about");
 
-let nameInput = document.querySelector("#element-name");
-let linkInput = document.querySelector("#element-link");
+const nameInput = document.querySelector("#element-name");
+const linkInput = document.querySelector("#element-link");
 
-const deleteElement = (evt) => {
-    evt.target.closest.remove();
-};
+function createCard(cardData) {
+  const newCardElement = document.querySelector("#card-template").content.cloneNode(true);
+  newCardElement.querySelector(".element__image").src = cardData.link;
+  newCardElement.querySelector(".element__image").alt = cardData.name;
+  newCardElement.querySelector(".element__name").textContent = cardData.name;
+  newCardElement.querySelector(".element__basket").addEventListener("click", deleteElement);
+  newCardElement.querySelector(".element__image").addEventListener("click", handleImageClick);
+  newCardElement.querySelector(".element__like").addEventListener("click", toggleLike);
+  return newCardElement;
+}
 
 const addElement = (evt) => {
     evt.preventDefault();
-    const newCardElement = document.querySelector("#card-template").content.cloneNode(true);
-    newCardElement.querySelector(".element__image").src = linkInput.value;
-    newCardElement.querySelector(".element__name").textContent = nameInput.value;
-    newCardElement.querySelector(".element__basket").addEventListener("click", deleteElement);
-    newCardElement.querySelector(".element__image").addEventListener("click", handleImageClick);
-    newCardElement.querySelector(".element__like").addEventListener("click", toggleLike);
+    const newCardElement = createCard({link:linkInput.value, name:nameInput.value});
     elementGrid.prepend(newCardElement);
     closePopup(popupAddElement);
+    evt.target.reset();
 };
 
-function createCard(cardData) {
-    const newCardElement = document.querySelector("#card-template").content.cloneNode(true);
-    newCardElement.querySelector(".element__image").src = cardData.link;
-    newCardElement.querySelector(".element__name").textContent = cardData.name;
-    newCardElement.querySelector(".element__basket").addEventListener("click", deleteElement);
-    newCardElement.querySelector(".element__image").addEventListener("click", handleImageClick);
-    newCardElement.querySelector(".element__like").addEventListener("click", toggleLike);
-    return newCardElement;
-}
+const deleteElement = (evt) => {
+  evt.target.closest('.element').remove();
+};
 
 function handleFormSubmit (evt) {
     evt.preventDefault();
@@ -83,24 +80,28 @@ function handleFormSubmit (evt) {
 }
 
 const handleImageClick = (evt) => {
-    const imageSrc = evt.target.src;
-    const imageCaption = evt.target.closest.querySelector(".element__name").textContent;
-    openImagePopup(imageSrc, imageCaption);
+  const imageSrc = evt.target.src;
+  const imageCaption = evt.target.closest(".element").querySelector(".element__name").textContent;
+  handleImagePopup(imageSrc, imageCaption);
 };
 
-const openImagePopup = (src, caption) => {
-    popupImageView.src = src;
-    popupImageView.alt = caption;
-    popupImageCaption.textContent = caption;
-    imagePopup.classList.add("popup_opened");
-};
+function handleImagePopup(src, caption) {
+  popupImageView.src = src;
+  popupImageView.alt = caption;
+  popupImageCaption.textContent = caption;
+  openPopup(imagePopup);
+}
 
 const toggleLike = (evt) => {
     evt.target.classList.toggle("element__like_active");
 };
 
 function openPopup(popup) {
-    popup.classList.add("popup_opened");
+  if (popup === popupElement) {
+      titleInput.value = titleElement.textContent;
+      descriptionInput.value = descriptionElement.textContent;
+  }
+  popup.classList.add("popup_opened");
 }
 
 function closePopup(popup) {
