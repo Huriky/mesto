@@ -97,10 +97,6 @@ const toggleLike = (evt) => {
 };
 
 function openPopup(popup) {
-  if (popup === popupElement) {
-      titleInput.value = titleElement.textContent;
-      descriptionInput.value = descriptionElement.textContent;
-  }
   popup.classList.add("popup_opened");
 }
 
@@ -112,7 +108,11 @@ formElement.addEventListener('submit', handleFormSubmit);
 
 saveAddElementForm.addEventListener("submit", addElement);
 
-profileNameEditButton.addEventListener("click", () => openPopup(popupElement));
+profileNameEditButton.addEventListener("click", () => {
+  openPopup(popupElement)
+  titleInput.value = titleElement.textContent;
+  descriptionInput.value = descriptionElement.textContent;
+});
 
 profileCloseButton.addEventListener("click", () => closePopup(popupElement));
 
