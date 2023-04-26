@@ -25,56 +25,7 @@
         <button class="profile__button" type="button"></button>
       </section>
       <section class="elements">
-        <ul class="elements__grid">
-            <!-- <li class="element">
-                <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                <button class="element__basket" type="button"></button>
-                <div class="element__info">
-                    <h2 class="element__name">Карачаевск</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-                <button class="element__basket" type="button"></button>
-                <div class="element__info">
-                    <h2 class="element__name">Гора Эльбрус</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__image" src="./images/donbay.png" alt="Домбай">
-                <button class="element__basket" type="button"></button>
-                <div class="element__info">
-                    <h2 class="element__name">Домбай</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__image" src="./images/elbrus.png" alt="Гора Эльбрус">
-                <button class="element__basket" type="button"></button>
-                <div class="element__info">
-                    <h2 class="element__name">Гора Эльбрус</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__image" src="./images/donbay.png" alt="Домбай">
-                <button class="element__basket" type="button"></button>
-                <div class="element__info">
-                    <h2 class="element__name">Домбай</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </li>
-            <li class="element">
-                <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
-                <button class="element__basket" type="button"></button>
-                <div class="element__info">
-                    <h2 class="element__name">Карачаевск</h2>
-                    <button class="element__like" type="button"></button>
-                </div>
-            </li> -->
-        </ul>
+        <ul class="elements__grid"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -85,7 +36,8 @@
         <div class="popup__container">
           <h2 class="popup__title">Редактировать профиль</h2>
           <form name="popup-profile" id="profile_form" class="popup__form" novalidate>
-              <input
+          <div class="popup__field-wrapper">   
+            <input
                 type="text"
                 class="popup__input"
                 id="input-name"
@@ -93,7 +45,11 @@
                 placeholder="Имя"
                 required
                 minlength="2"
+                maxlength="40"
               />
+              <p class="popup__error input-name-error"></p>
+          </div>
+          <div class="popup__field-wrapper"> 
               <input
                 type="text"
                 class="popup__input"
@@ -102,7 +58,10 @@
                 placeholder="Профессия"
                 required
                 minlength="2"
+                maxlength="200"
               />
+              <p class="popup__error input-name-error"></p>
+          </div>
             <button class="popup__submit-button" type="submit">Сохранить</button>
           </form>
           <button class="popup__close-button" type="button" id="submit-profile"></button>
@@ -113,7 +72,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Добавить место</h2>
         <form name="popup-add-element" id="add_element_form" class="popup__form" novalidate>
-            <input
+        <div class="popup__field-wrapper">    
+          <input
               type="text"
               class="popup__input"
               id="element-name"
@@ -121,7 +81,11 @@
               placeholder="Название"
               required
               minlength="2"
+              maxlength="30"
             />
+            <p class="popup__error element-name-error"></p>
+        </div>
+        <div class="popup__field-wrapper">
             <input
               class="popup__input"
               id="element-link"
@@ -130,6 +94,8 @@
               type="url"
               required
             />
+            <p class="popup__error element-name-error"></p>
+        </div>
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" id="submit-close-popup-element" type="button"></button>
@@ -156,5 +122,6 @@
     </template>
 
       <script src="./scripts/index.js"></script>
+      <script src="./scripts/validate.js"></script>
   </body>
 </html>
