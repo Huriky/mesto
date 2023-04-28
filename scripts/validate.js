@@ -1,6 +1,14 @@
-function validateInput(input) {
+const validationSettings = {
+    formSelector: '.popup__form',
+    inputSelector: 'input',
+    submitButtonSelector: '.popup__submit-button',
+    errorClass: 'popup__error',
+    submitButtonDisabledClass: 'popup__submit-button_disabled',
+  };
+  
+  function validateInput(input) {
     const errorElement = input.nextElementSibling;
-    
+  
     if (!input.validity.valid) {
       errorElement.textContent = input.validationMessage;
       errorElement.style.display = 'block';
@@ -8,61 +16,46 @@ function validateInput(input) {
       errorElement.textContent = '';
       errorElement.style.display = 'none';
     }
-    }
-
-    function enableValidation() {
-        const forms = document.querySelectorAll('.popup__form');
-      
-        forms.forEach((form) => {
-          const inputs = form.querySelectorAll('input');
-      
-          inputs.forEach((input) => {
-            input.addEventListener('input', () => {
-              validateInput(input);
-              toggleSubmitButton(form);
-            });
-          });
-      
-          form.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-          });
-      
-          toggleSubmitButton(form);
+  }
+  
+  function enableValidation(settings) {
+    const forms = document.querySelectorAll(settings.formSelector);
+  
+    forms.forEach((form) => {
+      const inputs = form.querySelectorAll(settings.inputSelector);
+  
+      inputs.forEach((input) => {
+        input.addEventListener('input', () => {
+          validateInput(input);
+          toggleSubmitButton(form, settings);
         });
-      }      
-
-function toggleSubmitButton(form) {
-    const submitButton = form.querySelector('.popup__submit-button');
-    const inputs = form.querySelectorAll('input');
-    const allInputsValid = Array.from(inputs).every(input => input.validity.valid);
+      });
   
-    if (allInputsValid) {
-      submitButton.removeAttribute('disabled');
-      submitButton.classList.remove('popup__submit-button_disabled');
+      form.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      });
+  
+      toggleSubmitButton(form, settings);
+    });
+  }
+  
+  function toggleSubmitButton(form, settings) {
+    const submitButton = form.querySelector(settings.submitButtonSelector);
+    const isValidForm = form.checkValidity();
+  
+    if (isValidForm) {
+      submitButton.classList.remove(settings.submitButtonDisabledClass);
+      submitButton.disabled = false;
     } else {
-      submitButton.setAttribute('disabled', true);
-      submitButton.classList.add('popup__submit-button_disabled');
+      submitButton.classList.add(settings.submitButtonDisabledClass);
+      submitButton.disabled = true;
     }
   }
-
-  function resetSubmitButton(form) {
-    const submitButton = form.querySelector(".popup__submit-button");
-    submitButton.setAttribute("disabled", true);
-    submitButton.classList.add("popup__submit-button_disabled");
+  
+  function resetSubmitButton(form, settings) {
+    const submitButton = form.querySelector(settings.submitButtonSelector);
+    submitButton.classList.add(settings.submitButtonDisabledClass);
+    submitButton.disabled = true;
   }
   
-  
-  function addValidationListeners(form) {
-    const inputs = form.querySelectorAll('input');
-  
-    inputs.forEach(input => {
-      input.addEventListener('input', () => {
-        validateInput(input);
-        toggleSubmitButton(form);
-      });
-    });
-  
-    document.addEventListener('DOMContentLoaded', () => toggleSubmitButton(form));
-  }
-  
-  enableValidation();
+  enableValidation(validationSettings);

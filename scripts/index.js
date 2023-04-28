@@ -143,17 +143,23 @@ editProfileButton.addEventListener("click", () => {
   openPopup(editProfilePopup);
   titleInput.value = titleElement.textContent;
   descriptionInput.value = descriptionElement.textContent;
-  toggleSubmitButton(editProfileForm);
+  toggleSubmitButton(editProfileForm, validationSettings);
 });
 
-closeEditProfileButton.addEventListener("click", () => closePopup(editProfilePopup));
+closeEditProfileButton.addEventListener("click", () => {
+  resetSubmitButton(editProfileForm, validationSettings);
+  closePopup(editProfilePopup);
+});
 
 openAddElementPopupButton.addEventListener("click", () => {
   openPopup(addElementPopup);
-  resetSubmitButton(addElementForm); // Деактивируем кнопку сабмита при открытии попапа
+  toggleSubmitButton(addElementForm, validationSettings);
 });
 
-closeAddElementPopupButton.addEventListener("click", () => closePopup(addElementPopup));
+closeAddElementPopupButton.addEventListener("click", () => {
+  resetSubmitButton(addElementForm, validationSettings);
+  closePopup(addElementPopup);
+});
 
 imagePopupCloseButton.addEventListener("click", () => closePopup(imagePopup));
 
