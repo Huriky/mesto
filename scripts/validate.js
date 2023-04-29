@@ -38,6 +38,11 @@ const validationSettings = {
       toggleSubmitButton(form, settings);
     });
   }
+
+  function disableButton(button, settings) {
+    button.classList.add(settings.submitButtonDisabledClass);
+    button.disabled = true;
+  }
   
   function toggleSubmitButton(form, settings) {
     const submitButton = form.querySelector(settings.submitButtonSelector);
@@ -47,15 +52,13 @@ const validationSettings = {
       submitButton.classList.remove(settings.submitButtonDisabledClass);
       submitButton.disabled = false;
     } else {
-      submitButton.classList.add(settings.submitButtonDisabledClass);
-      submitButton.disabled = true;
+      disableButton(submitButton, settings);
     }
   }
   
   function resetSubmitButton(form, settings) {
     const submitButton = form.querySelector(settings.submitButtonSelector);
-    submitButton.classList.add(settings.submitButtonDisabledClass);
-    submitButton.disabled = true;
+    disableButton(submitButton, settings);
   }
   
   enableValidation(validationSettings);

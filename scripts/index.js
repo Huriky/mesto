@@ -69,6 +69,7 @@ const handleAddElementSubmit = (evt) => {
   elementGrid.prepend(newCardElement);
   closePopup(addElementPopup);
   evt.target.reset();
+  resetSubmitButton(addElementForm, validationSettings)
 };
 
 const deleteElement = (evt) => {
@@ -133,9 +134,6 @@ if (evt.target.classList.contains('popup')) {
 }
 }
 
-document.addEventListener('keydown', handleEscClose);
-document.addEventListener('click', handleOverlayClose);
-
 editProfileForm.addEventListener('submit', handleEditProfileSubmit); 
 addElementForm.addEventListener("submit", handleAddElementSubmit);
 
@@ -147,17 +145,14 @@ editProfileButton.addEventListener("click", () => {
 });
 
 closeEditProfileButton.addEventListener("click", () => {
-  resetSubmitButton(editProfileForm, validationSettings);
   closePopup(editProfilePopup);
 });
 
 openAddElementPopupButton.addEventListener("click", () => {
   openPopup(addElementPopup);
-  toggleSubmitButton(addElementForm, validationSettings);
 });
 
 closeAddElementPopupButton.addEventListener("click", () => {
-  resetSubmitButton(addElementForm, validationSettings);
   closePopup(addElementPopup);
 });
 
