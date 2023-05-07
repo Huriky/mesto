@@ -5,26 +5,22 @@ export default class FormValidator {
     this._buttonElement = formElement.querySelector(settings.submitButtonSelector);
   }
   
-    _validateInput(input) {
-      const errorElement = input.nextElementSibling;
-  
-      if (!input.validity.valid) {
-        errorElement.textContent = input.validationMessage;
-        errorElement.style.display = 'block';
-      } else {
-        errorElement.textContent = '';
-        errorElement.style.display = 'none';
-      }
-    }
+  _validateInput(input) {
+    this._setError(input, input.validationMessage);
+}
 
-    clearInputErrors() {
-      const inputs = this._formElement.querySelectorAll(this._settings.inputSelector);
-      inputs.forEach((input) => {
-          const errorElement = input.nextElementSibling;
-          errorElement.textContent = '';
-          errorElement.style.display = 'none';
-      });
+    _setError(input, errorMessage) {
+      const errorElement = input.nextElementSibling;
+      errorElement.textContent = errorMessage;
+      errorElement.style.display = errorMessage ? 'block' : 'none';
   }
+
+  clearInputErrors() {
+    const inputs = this._formElement.querySelectorAll(this._settings.inputSelector);
+        inputs.forEach((input) => {
+        this._setError(input, '');
+    });
+}
   
     _toggleSubmitButton() {
       const submitButton = this._formElement.querySelector(this._settings.submitButtonSelector);
