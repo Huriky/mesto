@@ -4,17 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место Россия</title>
   </head>
 
   <body class="body">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Место Россия"/>
+      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Место Россия"/>
     </header>
     <main class="content">
       <section class="profile">
-          <img class="profile__image" src="./images/kusto.jpg" alt="Изображение профиля"/>
+          <img class="profile__image" src="<%=require('./images/kusto.jpg')%>" alt="Изображение профиля"/>
         <div class="profile__info">
           <div class="profile__name-wrapper">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -60,7 +59,7 @@
                 minlength="2"
                 maxlength="200"
               />
-              <p class="popup__error input-name-error"></p>
+              <p class="popup__error input-about-error"></p>
           </div>
             <button class="popup__submit-button" type="submit">Сохранить</button>
           </form>
@@ -94,7 +93,7 @@
               type="url"
               required
             />
-            <p class="popup__error input-name-error"></p>
+            <p class="popup__error element-link-error"></p>
         </div>
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
@@ -120,8 +119,6 @@
         </div>
       </li>
     </template>
-    
-    <script type="module" src="./scripts/index.js"></script>
 
   </body>
 </html>
