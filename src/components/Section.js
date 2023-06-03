@@ -12,6 +12,6 @@ export default class Section {
   
     // Метод для добавления элемента в контейнер
     addItem(element) {
-      this._container.append(element); // Добавление элемента в контейнер
+      this._container.prepend(element); // Добавление элемента в контейнер
     }
   }
