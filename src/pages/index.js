@@ -46,17 +46,12 @@ popupWithFormCard.setEventListeners();
 popupWithFormProfile.setEventListeners();
 popupWithImage.setEventListeners();
 
-// Перемещение объявления функции deleteElement выше
-const deleteElement = (evt) => {
-  evt.target.closest('.element').remove();
-};
 
 function createCard(cardData) {
-  const card = new Card(cardData, "#card-template", deleteElement, handleImagePopup);
+  const card = new Card(cardData, "#card-template", handleImagePopup);
   const cardElement = card.generateCard();
   return cardElement;
 };
-
 
 const section = new Section({
   renderer: (cardData) => {

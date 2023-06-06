@@ -3,21 +3,23 @@ export default class Card {
     this._name = cardData.name; // Название карточки
     this._link = cardData.link; // Ссылка на изображение карточки
     this._cardSelector = cardSelector; // Селектор шаблона карточки
-    this._handleDelete = handleDelete; // Функция обработчика удаления карточки
     this._handleCardClick = handleCardClick; // Функция обработчика клика по карточке
+    this._deleteElement = this._deleteElement.bind(this);
   }
 
     _getTemplate() {
         const cardElement = document
           .querySelector(this._cardSelector)
-          .content.cloneNode(true);
+          .content.cloneNode(true)
+          .querySelector('.element');
         return cardElement;
       }
+  
       
     _setEventListeners() {
       this._element
         .querySelector(".element__basket")
-        .addEventListener("click", this._handleDelete); // Добавление обработчика удаления карточки
+        .addEventListener("click", this._deleteElement); // Добавление обработчика удаления карточки
         this._elementImage.addEventListener("click", () => {
           this._handleImageClick({ name: this._name, link: this._link }); // Добавление обработчика клика по карточке
         });
@@ -30,11 +32,15 @@ export default class Card {
         const imageSrc = this._elementImage.src;
         const imageCaption = this._elementImage.caption;
         this._handleCardClick(imageSrc, imageCaption);
-    }
+      };
+
+      _deleteElement() {
+        this._element.remove();
+      };
                                    
     _toggleLike(evt) {
         evt.target.classList.toggle("element__like_active");
-      }
+      };
       
     generateCard() {
         this._element = this._getTemplate();

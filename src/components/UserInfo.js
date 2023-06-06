@@ -1,8 +1,8 @@
 export default class UserInfo {
     // Конструктор класса принимает объект с селекторами элемента имени пользователя и элемента информации о себе
     constructor({ nameSelector, infoSelector }) {
-      this._nameElement = document.querySelector('.profile__name'); // Элемент имени пользователя
-      this._infoElement = document.querySelector('.profile__description'); // Элемент информации о себе
+      this._nameElement = document.querySelector(nameSelector); // Элемент имени пользователя
+      this._infoElement = document.querySelector(infoSelector); // Элемент информации о себе
     }
   
     // Метод получения данных пользователя
