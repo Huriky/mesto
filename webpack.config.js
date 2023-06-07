@@ -19,7 +19,7 @@ module.exports = {
     compress: true,
     port: 8080
   },
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

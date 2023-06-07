@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardData, cardSelector, handleDelete, handleCardClick) {
+  constructor(cardData, cardSelector, handleCardClick) {
     this._name = cardData.name; // Название карточки
     this._link = cardData.link; // Ссылка на изображение карточки
     this._cardSelector = cardSelector; // Селектор шаблона карточки
