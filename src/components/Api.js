@@ -23,13 +23,13 @@ export default class Api {
     getInitialCards() {
       return this._get('/cards');
     }
-    
+
     getUserInfo() {
         return this._get('/users/me');
       }
   
 
-      updateProfile(data) {
+    updateProfile(data) {
         return fetch(`${this._baseUrl}/users/me`, {
           method: 'PATCH',
           headers: this._headers,
@@ -38,7 +38,7 @@ export default class Api {
           .then(this._handleResponse);
       }
 
-      updateAvatar(data) {
+    updateAvatar(data) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
           method: 'PATCH',
           headers: this._headers,
@@ -47,7 +47,7 @@ export default class Api {
           .then(this._handleResponse);
       }
       
-      addCard(data) {
+    addCard(data) {
         return fetch(`${this._baseUrl}/cards`, {
           method: 'POST',
           headers: this._headers,
@@ -56,7 +56,7 @@ export default class Api {
           .then(this._handleResponse);
       }
 
-      addLike(cardId) {
+    addLike(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
           method: 'PUT',
           headers: this._headers,
@@ -64,7 +64,7 @@ export default class Api {
           .then(this._handleResponse);
       }
       
-      removeLike(cardId) {
+    removeLike(cardId) {
         return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
           method: 'DELETE',
           headers: this._headers,
@@ -72,7 +72,7 @@ export default class Api {
           .then(this._handleResponse);
       }
 
-      deleteElement(cardId) {
+    deleteElement(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
           method: 'DELETE',
           headers: this._headers,
@@ -80,5 +80,4 @@ export default class Api {
           .then(this._handleResponse);
       }
       
-  
   }

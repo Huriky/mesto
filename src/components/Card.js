@@ -1,16 +1,16 @@
 export default class Card {
-  constructor(cardData, cardSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
-    this._name = cardData.name; // Название карточки
-    this._link = cardData.link; // Ссылка на изображение карточки
-    this._likes = cardData.likes; // Массив пользователей, лайкнувших карточку
+  constructor({ data, handleCardClick, handleDeleteClick, handleLikeClick }, cardSelector) {
+    this._name = data.name; // Название карточки
+    this._link = data.link; // Ссылка на изображение карточки
+    this._likes = data.likes; // Массив пользователей, лайкнувших карточку
+    this._userId = data.currentUserId; // ID текущего пользователя
+    this._cardId = data._id; // ID карточки
+    this._ownerId = data.owner._id; // ID владельца карточки
     this._cardSelector = cardSelector; // Селектор шаблона карточки
     this._handleCardClick = handleCardClick; // Функция обработчика клика по карточке
-    this._handleDeleteClick = handleDeleteClick;
-    this._handleLikeClick = handleLikeClick;
-    this._userId = "cb5654c81bf5ec759f600f6b";
-    this._cardId = cardData._id;
-    this._ownerId = cardData.owner._id;
-  }
+    this._handleDeleteClick = handleDeleteClick; // Функция обработчика удаления карточки
+    this._handleLikeClick = handleLikeClick; // Функция обработчика лайка карточки
+}
 
     _getTemplate() {
         const cardElement = document

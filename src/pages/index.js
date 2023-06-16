@@ -54,7 +54,7 @@ const popupWithFormAvatar = new PopupWithForm("#new_avatar", (data) => {
       userInfo.setUserInfo(data);
     })
     .catch((error) => {
-      // Обработка ошибок при обновлении аватара
+      console.log(error);
     });
 });
 
@@ -70,18 +70,12 @@ const popupWithFormCard = new PopupWithForm("#add_element", (data) => {
       section.addItem(cardElement);
     })
     .catch((error) => {
-      // Обработка ошибок при добавлении карточки
+      console.log(error);
     });
 });
 
-const popupWithConfirmation = new PopupWithConfirmation(
-  "#modal",
-  handleCardDelete
-);
+const popupWithConfirmation = new PopupWithConfirmation("#modal");
 
-function handleCardDelete() {
-  this._element.remove();
-}
 
 popupWithFormCard.setEventListeners();
 popupWithFormProfile.setEventListeners();
@@ -119,21 +113,41 @@ function removeLike(card) {
     });
 }
 
-function handlDeleteClick(card) {
+function handleDeleteClick(card) {
   popupWithConfirmation.open(() => {
-    api.deleteElement(card._cardId).then(() => {
-      card.deleteElement();
-    });
+    api.deleteElement(card._cardId)
+      .then(() => {
+        card.deleteElement();
+      })
+      .catch((error) => {
+        console.error(error);
+        // Здесь также можно добавить визуальные уведомления для пользователя
+      });
   });
 }
 
+let currentUserId;
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    currentUserId = userData._id;
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
 function createCard(cardData) {
+  cardData.currentUserId = currentUserId; // Add this line
   const card = new Card(
-    cardData,
-    "#card-template",
-    handleImagePopup,
-    handlDeleteClick,
-    handleLikeClick
+    {
+      data: cardData,
+      handleCardClick: handleImagePopup,
+      handleDeleteClick: handleDeleteClick,
+      handleLikeClick: handleLikeClick
+    },
+    "#card-template"
   );
   const cardElement = card.generateCard();
   return cardElement;
@@ -149,23 +163,18 @@ const section = new Section(
   ".elements__grid"
 );
 
-api
-  .getUserInfo()
-  .then((userData) => {
+  Promise.all([
+    api.getUserInfo(),
+    api.getInitialCards()
+])
+.then(([userData, initialCards]) => {
     userInfo.setUserInfo(userData);
-  })
-  .catch((error) => {
-    // Обработка ошибок при получении информации о пользователе
-  });
-
-api
-  .getInitialCards()
-  .then((initialCards) => {
+    currentUserId = userData._id;
     section.renderItems(initialCards.reverse());
-  })
-  .catch((error) => {
-    // Обработка ошибок при получении начальных карточек
-  });
+})
+.catch((error) => {
+    console.error('Ошибка при получении данных:', error);
+});
 
 const editProfileFormValidator = new FormValidator(
   validationSettings,

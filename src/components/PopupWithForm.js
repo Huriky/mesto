@@ -26,11 +26,14 @@ export default class PopupWithForm extends Popup {
   async _handleSubmit(evt) {
     evt.preventDefault();
     const originalText = this.submitButton.textContent;
-
+    this.submitButton.textContent = "Сохранение...";
+  
     try {
-      this.submitButton.textContent = "Сохранение...";
       await this._handleFormSubmit(this._getInputValues());
       this.close();
+    } catch (error) {
+      console.error('Ошибка', error);
+      // здесь можно выводить сообщение об ошибке для пользователя
     } finally {
       this.submitButton.textContent = originalText;
     }
