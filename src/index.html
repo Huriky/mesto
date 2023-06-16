@@ -9,17 +9,22 @@
 
   <body class="body">
     <header class="header">
-      <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Место Россия"/>
+      <img
+        class="header__logo"
+        src="<%=require('./images/logo.svg')%>"
+        alt="Место Россия"
+      />
     </header>
     <main class="content">
       <section class="profile">
-          <img class="profile__image" src="<%=require('./images/kusto.jpg')%>" alt="Изображение профиля"/>
+        <img class="profile__image" src="" alt="Изображение профиля" />
+        <div class="profile__avatar"></div>
         <div class="profile__info">
           <div class="profile__name-wrapper">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__name-edit" type="button"></button>
           </div>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
         </div>
         <button class="profile__button" type="button"></button>
       </section>
@@ -32,47 +37,61 @@
     </footer>
 
     <div class="popup" id="edit_profile">
-        <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form name="popup-profile" id="profile_form" class="popup__form" novalidate>
-          <div class="popup__field-wrapper">   
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form
+          name="popup-profile"
+          id="profile_form"
+          class="popup__form"
+          novalidate
+        >
+          <div class="popup__field-wrapper">
             <input
-                type="text"
-                class="popup__input"
-                id="input-name"
-                name="newName"
-                placeholder="Имя"
-                required
-                minlength="2"
-                maxlength="40"
-              />
-              <p class="popup__error input-name-error"></p>
+              type="text"
+              class="popup__input"
+              id="input-name"
+              name="name"
+              placeholder="Имя"
+              required
+              minlength="2"
+              maxlength="40"
+            />
+            <p class="popup__error input-name-error"></p>
           </div>
-          <div class="popup__field-wrapper"> 
-              <input
-                type="text"
-                class="popup__input"
-                id="input-about"
-                name="newAbout"
-                placeholder="Профессия"
-                required
-                minlength="2"
-                maxlength="200"
-              />
-              <p class="popup__error input-about-error"></p>
+          <div class="popup__field-wrapper">
+            <input
+              type="text"
+              class="popup__input"
+              id="input-about"
+              name="about"
+              placeholder="Профессия"
+              required
+              minlength="2"
+              maxlength="200"
+            />
+            <p class="popup__error input-about-error"></p>
           </div>
-            <button class="popup__submit-button" type="submit">Сохранить</button>
-          </form>
-          <button class="popup__close-button" type="button" id="submit-profile"></button>
-        </div>
+          <button class="popup__submit-button" type="submit">Сохранить</button>
+        </form>
+        <button
+          class="popup__close-button"
+          type="button"
+          id="submit-profile"
+        ></button>
+      </div>
     </div>
 
     <div class="popup" id="add_element">
       <div class="popup__container">
         <h2 class="popup__title">Добавить место</h2>
-        <form name="popup-add-element" id="add_element_form" class="popup__form" novalidate>
-        <div class="popup__field-wrapper">    
-          <input
+        <form
+          name="popup-add-element"
+          id="add_element_form"
+          class="popup__form"
+          novalidate
+        >
+          <div class="popup__field-wrapper">
+            <input
               type="text"
               class="popup__input"
               id="element-name"
@@ -83,8 +102,8 @@
               maxlength="30"
             />
             <p class="popup__error element-name-error"></p>
-        </div>
-        <div class="popup__field-wrapper">
+          </div>
+          <div class="popup__field-wrapper">
             <input
               class="popup__input"
               id="element-link"
@@ -94,10 +113,65 @@
               required
             />
             <p class="popup__error element-link-error"></p>
-        </div>
+          </div>
           <button class="popup__submit-button" type="submit">Сохранить</button>
         </form>
-        <button class="popup__close-button" id="submit-close-popup-element" type="button"></button>
+        <button
+          class="popup__close-button"
+          id="submit-close-popup-element"
+          type="button"
+        ></button>
+      </div>
+    </div>
+
+    <div class="popup" id="new_avatar">
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          name="popup-avatar-edit"
+          id="new_avatar_form"
+          class="popup__form"
+          novalidate
+        >
+          <div class="popup__field-wrapper">
+            <input
+              class="popup__input"
+              id="avatar-link"
+              name="avatarLink"
+              placeholder="Ссылка на картинку"
+              type="url"
+              required
+            />
+            <p class="popup__error avatar-link-error"></p>
+          </div>
+          <button class="popup__submit-button" type="submit">Сохранить</button>
+        </form>
+        <button
+          class="popup__close-button"
+          id="submit-close-popup-element"
+          type="button"
+        ></button>
+      </div>
+    </div>
+
+    <div class="popup" id="modal">
+      <div class="popup__container">
+        <h2 class="popup__title popup__title_modal">Вы уверены?</h2>
+
+        <button
+          class="popup__close-button"
+          id="submit-close-popup-element"
+          type="button"
+        ></button>
+        <form class="popup__form" novalidate>
+          <button
+            class="popup__submit-button popup__submit-button_modal"
+            id="submit-close-popup-element"
+            type="submit"
+          >
+            Да
+          </button>
+        </form>
       </div>
     </div>
 
@@ -111,14 +185,16 @@
 
     <template id="card-template">
       <li class="element" id="">
-        <img class="element__image"/>
+        <img class="element__image" />
         <button class="element__basket" type="button"></button>
         <div class="element__info">
           <h2 class="element__name"></h2>
-          <button class="element__like" type="button"></button>
+          <div class="element__like_container">
+            <button class="element__like" type="button"></button>
+            <p class="element__like_counter">1</p>
+          </div>
         </div>
       </li>
     </template>
-
   </body>
 </html>

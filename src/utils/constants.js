@@ -6,6 +6,8 @@ const titleElement = document.querySelector(".profile__name");
 const descriptionElement = document.querySelector(".profile__description");
 const titleInput = document.querySelector("#input-name");
 const descriptionInput = document.querySelector("#input-about");
+const editAvatarProfile = document.querySelector('.profile__avatar');
+
 
 const validationSettings = {
     formSelector: '.popup__form',
@@ -25,4 +27,5 @@ const validationSettings = {
     titleInput,
     descriptionInput,
     validationSettings,
+    editAvatarProfile
   };
