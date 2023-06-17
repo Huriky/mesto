@@ -37,7 +37,7 @@ const userInfo = new UserInfo({
 const popupWithImage = new PopupWithImage("#image_popup");
 
 const popupWithFormProfile = new PopupWithForm("#edit_profile", (data) => {
-  api
+  return api
     .updateProfile(data)
     .then((data) => {
       userInfo.setUserInfo(data);
@@ -47,8 +47,9 @@ const popupWithFormProfile = new PopupWithForm("#edit_profile", (data) => {
     });
 });
 
+
 const popupWithFormAvatar = new PopupWithForm("#new_avatar", (data) => {
-  api
+  return api
     .updateAvatar(data.avatarLink)
     .then((data) => {
       userInfo.setUserInfo(data);
@@ -63,7 +64,7 @@ const popupWithFormCard = new PopupWithForm("#add_element", (data) => {
     name: data.elementName,
     link: data.elementLink,
   };
-  api
+  return api
     .addCard(cardData)
     .then((newCard) => {
       const cardElement = createCard(newCard);
@@ -85,14 +86,14 @@ popupWithConfirmation.setEventListeners();
 
 function handleLikeClick(card) {
   if (card.isLiked) {
-    removeLike(card);
+    return removeLike(card);
   } else {
-    addLike(card);
+    return addLike(card);
   }
 }
 
 function addLike(card) {
-  api
+  return api
     .addLike(card._cardId)
     .then((data) => {
       card.updateLikes(data.likes);
@@ -103,7 +104,7 @@ function addLike(card) {
 }
 
 function removeLike(card) {
-  api
+  return api
     .removeLike(card._cardId)
     .then((data) => {
       card.updateLikes(data.likes);
@@ -115,7 +116,7 @@ function removeLike(card) {
 
 function handleDeleteClick(card) {
   popupWithConfirmation.open(() => {
-    api.deleteElement(card._cardId)
+    return api.deleteElement(card._cardId)
       .then(() => {
         card.deleteElement();
       })
@@ -127,16 +128,6 @@ function handleDeleteClick(card) {
 }
 
 let currentUserId;
-
-api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-    currentUserId = userData._id;
-  })
-  .catch((error) => {
-    console.error(error);
-  });
 
 function createCard(cardData) {
   cardData.currentUserId = currentUserId; // Add this line
